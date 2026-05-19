@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sira&Dine - Apprendre l'Islam</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header / Onglets de Profils -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-mosque"></i> <span>Sira&Dine</span>
+        </div>
+        <nav class="profile-tabs">
+            <button class="tab-btn active" onclick="switchProfile('enfants')"><i class="fa-solid fa-child"></i> Enfants</button>
+            <button class="tab-btn" onclick="switchProfile('ados')"><i class="fa-solid fa-user-graduate"></i> Ados</button>
+            <button class="tab-btn" onclick="switchProfile('adultes')"><i class="fa-solid fa-user"></i> Adultes</button>
+        </nav>
+    </header>
+
+    <!-- BANNIÈRE GLOBALE DES HORAIRES DE PRIÈRE -->
+    <section class="prayer-times-bar">
+        <div class="prayer-header">
+            <span><i class="fa-solid fa-clock"></i> Horaires de prière du jour (<span id="user-city">Marseille</span>)</span>
+        </div>
+        <div class="prayer-grid">
+            <div class="prayer-item" id="p-Fajr"><span>Fajr</span> <strong class="time">--:--</strong></div>
+            <div class="prayer-item" id="p-Dhuhr"><span>Dhuhr</span> <strong class="time">--:--</strong></div>
+            <div class="prayer-item" id="p-Asr"><span>Asr</span> <strong class="time">--:--</strong></div>
+            <div class="prayer-item" id="p-Maghrib"><span>Maghrib</span> <strong class="time">--:--</strong></div>
+            <div class="prayer-item" id="p-Isha"><span>Isha</span> <strong class="time">--:--</strong></div>
+        </div>
+    </section>
+
+    <main class="container">
+        
+        <!-- SECTION ENFANTS -->
+        <section id="enfants" class="profile-section active-section">
+            <div class="hero-kids">
+                <h2>Assalamou alaykoum ! 👋</h2>
+                <p>Prêt à apprendre les 5 piliers de l'Islam en t'amusant ?</p>
+            </div>
+
+            <!-- CHOSE À APPRENDRE DU JOUR - ENFANTS -->
+            <div class="daily-discovery-box kids-box">
+                <h3><i class="fa-solid fa-lightbulb"></i> Ma p'tite découverte du Jour</h3>
+                <div id="kids-daily-lesson"><p>Chargement de ta surprise du jour...</p></div>
+            </div>
+            
+            <div class="grid-cards">
+                <div class="card kid-card" onclick="startQuiz('enfants')">
+                    <div class="card-icon"><i class="fa-solid fa-star text-gold"></i></div>
+                    <h3>Le Quiz des Petits</h3>
+                    <p>Réponds aux questions et gagne des étoiles !</p>
+                    <button class="btn-play">Jouer !</button>
+                </div>
+
+                <div class="card kid-card">
+                    <div class="card-icon"><i class="fa-solid fa-volume-high text-green"></i></div>
+                    <h3>Écoute de la Prière</h3>
+                    <p>Écoute la Sourate Al-Fatiha (essentielle pour la prière).</p>
+                    <div class="audio-player-box">
+                        <audio id="kids-audio" src="https://server8.mp3quran.net/afs/001.mp3"></audio>
+                        <button class="btn-audio" onclick="toggleAudio()"><i id="audio-icon" class="fa-solid fa-play"></i> Écouter</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION ADOS -->
+        <section id="ados" class="profile-section">
+            <div class="hero-content ados-hero">
+                <h2>Comprendre ma foi 🚀</h2>
+                <p>Des réponses claires à tes questions de tous les jours.</p>
+            </div>
+
+            <!-- CHOSE À APPRENDRE DU JOUR - ADOS -->
+            <div class="daily-discovery-box ados-box">
+                <h3><i class="fa-solid fa-bolt"></i> Focus Culture & Foi du Jour</h3>
+                <div id="ados-daily-lesson"><p>Chargement de ton focus quotidien...</p></div>
+            </div>
+            
+            <div class="grid-cards">
+                <div class="card ados-card" onclick="startQuiz('ados')">
+                    <h3>Le Défi Quotidien</h3>
+                    <p>Teste tes connaissances sur la vie du Prophète (PBSL).</p>
+                    <button class="btn-play ados-btn">Lancer le Défi</button>
+                </div>
+
+                <div class="card ados-card">
+                    <div class="card-icon"><i class="fa-solid fa-book-quran"></i></div>
+                    <h3>Lire le Coran</h3>
+                    <p>Accède au Coran en français et arabe avec explications.</p>
+                    <a href="https://quran.com/fr" target="_blank" class="btn-link ados-btn">Ouvrir le Coran <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION ADULTES -->
+        <section id="adultes" class="profile-section">
+            <div class="hero-content adultes-hero">
+                <h2>Approfondir les Sciences Religieuses 📚</h2>
+                <p>Espace d'apprentissage rigoureux basé sur le Coran et la Sunnah authentique.</p>
+            </div>
+
+            <!-- CHOSE À APPRENDRE DU JOUR - ADULTES -->
+            <div class="daily-discovery-box adultes-box">
+                <h3><i class="fa-solid fa-graduation-cap"></i> Méditation & Science Sacrée du Jour</h3>
+                <div id="adultes-daily-lesson"><p>Chargement de votre module quotidien...</p></div>
+            </div>
+
+            <!-- FLUX DE MISE À JOUR AUTOMATIQUE (API) -->
+            <div class="auto-update-container">
+                <div class="dynamic-box">
+                    <h3><i class="fa-solid fa-book"></i> Le Verset du Jour (Auto)</h3>
+                    <div id="daily-verse"><p>Chargement du verset sacré...</p></div>
+                </div>
+                
+                <div class="dynamic-box">
+                    <h3><i class="fa-solid fa-heart"></i> Le Hadith du Jour (Auto)</h3>
+                    <div id="daily-hadith"><p>Chargement du hadith...</p></div>
+                </div>
+            </div>
+            
+            <div class="grid-cards">
+                <div class="card adulte-card" onclick="startQuiz('adultes')">
+                    <h3>Évaluation des connaissances</h3>
+                    <p>Un quiz complet pour valider vos acquis théoriques.</p>
+                    <button class="btn-play adulte-btn">Démarrer le test</button>
+                </div>
+
+                <div class="card adulte-card">
+                    <div class="card-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+                    <h3>Bibliothèque du Coran</h3>
+                    <p>Étudiez le texte sacré, mot à mot, avec les exégèses (Tafsir).</p>
+                    <a href="https://quran.com/fr" target="_blank" class="btn-link adulte-btn">Étudier le Coran <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FENÊTRE MODALE DE QUIZ -->
+        <section id="quiz-container" class="quiz-container hidden">
+            <div class="quiz-box">
+                <button class="close-quiz" onclick="closeQuiz()">&times;</button>
+                <h2 id="quiz-title">Quiz</h2>
+                <div id="question-text" class="question-text"></div>
+                <div id="options-container" class="options-container"></div>
+                <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sira&Dine. Plateforme éducative islamique.</p>
+        <p><small><i class="fa-solid fa-shield-halved"></i> Sources certifiées (Al-Bukhari, Muslim, Quran.com & Aladhan APIs).</small></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

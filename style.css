@@ -1,0 +1,139 @@
+:root {
+    --bg-color: #f7f9fa;
+    --text-color: #2c3e50;
+    --primary-green: #2ecc71;
+    --kids-color: #ff9f43;
+    --ados-color: #9b59b6;
+    --adultes-color: #00b894;
+    --card-shadow: 0 8px 16px rgba(0,0,0,0.06);
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex; flex-direction: column; min-height: 100vh;
+}
+
+header {
+    background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
+    position: sticky; top: 0; z-index: 100;
+}
+
+.logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-green); display: flex; align-items: center; gap: 10px; }
+.profile-tabs { display: flex; gap: 10px; }
+
+.tab-btn {
+    padding: 10px 20px; border: none; background: #f1f2f6; border-radius: 30px;
+    cursor: pointer; font-weight: 600; transition: all 0.3s;
+}
+
+.tab-btn.active { color: white; }
+header:has(button[onclick*="enfants"].active) .tab-btn.active { background-color: var(--kids-color); }
+header:has(button[onclick*="ados"].active) .tab-btn.active { background-color: var(--ados-color); }
+header:has(button[onclick*="adultes"].active) .tab-btn.active { background-color: var(--adultes-color); }
+
+/* BARRE DES HORAIRES DE PRIÈRE */
+.prayer-times-bar {
+    background: #2c3e50; color: white; padding: 1rem 5%;
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;
+    box-shadow: inset 0 -2px 10px rgba(0,0,0,0.2);
+}
+.prayer-header { font-weight: 600; color: #1dd1a1; }
+.prayer-grid { display: flex; gap: 15px; flex-wrap: wrap; }
+.prayer-item {
+    background: rgba(255, 255, 255, 0.1); padding: 6px 14px; border-radius: 8px;
+    font-size: 0.9rem; display: flex; gap: 8px; align-items: center;
+}
+.prayer-item strong { color: #fff; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; }
+
+/* BOÎTES "UN TRUC À APPRENDRE CHAQUE JOUR" */
+.daily-discovery-box {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+    border-left: 6px solid #ccc;
+}
+.daily-discovery-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.daily-discovery-box p {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #4a5568;
+}
+.daily-discovery-box .lesson-src {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #a0aec0;
+}
+.kids-box { border-left-color: var(--kids-color); background: #fffaf0; }
+.kids-box h3 { color: var(--kids-color); }
+.ados-box { border-left-color: var(--ados-color); background: #faf5ff; }
+.ados-box h3 { color: var(--ados-color); }
+.adultes-box { border-left-color: var(--adultes-color); background: #f0fff4; }
+.adultes-box h3 { color: var(--adultes-color); }
+
+/* RESTE DE LA CONFIGURATION */
+.container { flex: 1; max-width: 1200px; margin: 2rem auto; padding: 0 2rem; width: 100%; }
+.profile-section { display: none; animation: fadeIn 0.4s ease forwards; }
+.active-section { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.hero-kids, .hero-content { color: white; padding: 2.5rem; border-radius: 20px; margin-bottom: 2rem; }
+.hero-kids { background: linear-gradient(135deg, #ff9f43, #ff6b6b); }
+.ados-hero { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+.adultes-hero { background: linear-gradient(135deg, #00b894, #009432); }
+
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.card {
+    background: white; padding: 2rem; border-radius: 16px; box-shadow: var(--card-shadow);
+    text-align: center; transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between;
+}
+.card:hover { transform: translateY(-4px); }
+.card-icon { font-size: 2.5rem; margin-bottom: 1rem; color: #b2bec3; }
+
+.btn-play, .btn-link, .btn-audio {
+    border: none; padding: 12px 24px; border-radius: 20px; font-weight: bold;
+    cursor: pointer; width: 100%; margin-top: 1rem; text-decoration: none; display: inline-block;
+}
+.btn-play { background-color: var(--kids-color); color: white; }
+.ados-btn { background-color: var(--ados-color); color: white; }
+.adulte-btn { background-color: var(--adultes-color); color: white; }
+.btn-audio { background-color: #2ecc71; color: white; font-size: 1rem; }
+.btn-audio:hover { background-color: #27ae60; }
+
+.auto-update-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+.dynamic-box { background: #edf2f7; border-left: 5px solid var(--adultes-color); padding: 1.5rem; border-radius: 8px; }
+.dynamic-box h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #2d3748; }
+.quote-text { font-style: italic; color: #4a5568; margin-bottom: 0.5rem; }
+.quote-source { font-size: 0.85rem; font-weight: bold; color: #718096; }
+
+/* Modal Quiz */
+.quiz-container { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center; z-index:1000; }
+.quiz-box { background:white; padding:2.5rem; border-radius:20px; max-width:500px; width:90%; position:relative; text-align:center; }
+.close-quiz { position:absolute; top:15px; right:20px; background:none; border:none; font-size:2rem; cursor:pointer; }
+.options-container { display:flex; flex-direction:column; gap:12px; margin-top:1.5rem; }
+.option-btn { padding:14px; border:2px solid #e2e8f0; border-radius:12px; background:none; cursor:pointer; font-weight:500; }
+.option-btn:hover { background:#f8fafc; }
+.quiz-feedback { margin-top:1.5rem; padding:12px; border-radius:8px; font-weight:bold; }
+.correct { background:#d4edda; color:#155724; }
+.incorrect { background:#f8d7da; color:#721c24; }
+.hidden { display: none !important; }
+
+footer { background:#2c3e50; color:white; text-align:center; padding:1.5rem; margin-top:4rem; }
+footer small { color:#cbd5e1; }
